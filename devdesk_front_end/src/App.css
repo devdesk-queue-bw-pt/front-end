@@ -99,3 +99,7 @@ button:disabled {
   display: inline-block;
   margin-right: 5px;
 }
+
+.logo {
+  font-family: 'Anton', sans-serif;
+}
