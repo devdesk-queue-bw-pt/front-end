@@ -61,7 +61,7 @@ const CreateAccount = () => {
 
 
 
-      <button type='submit' data-cy='submit'>Login</button>
+      <button type='submit' data-cy='submit'>Create</button>
 
     </form>
   )
