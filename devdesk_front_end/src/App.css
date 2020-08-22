@@ -29,13 +29,13 @@ textarea {
   border-radius: 5px;
   padding: 10px;
   transition: all 0.3s;
-  font-size: 1.4rem;
+  font-size: 1rem !important;
   letter-spacing: 0.5px;
   background-color: white;
 }
 select {
-  height: 40px;
-  width: 325px;
+  height: auto;
+  width: 100%;
 }
 
 select:focus {
@@ -54,10 +54,12 @@ input:placeholder {
 
 button {
   width: 150px;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
   padding: 8px 11px;
   font-size: 1.2rem;
   text-transform: uppercase;
+  margin: 0 auto !important;
   border: 0;
   border-radius: 5px;
   letter-spacing: 2px;
@@ -67,7 +69,7 @@ button {
   color: #fff;
   cursor: pointer;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-  margin-top: 3rem;
+  margin-top: 2rem !important;
 }
 
 button:hover {
@@ -99,6 +101,7 @@ button:disabled {
   display: inline-block;
   margin-right: 5px;
 }
+
 
 .logo {
   font-family: 'Anton', sans-serif;

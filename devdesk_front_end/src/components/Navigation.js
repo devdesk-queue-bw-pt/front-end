@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Nav, NavItem, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, NavLink } from 'reactstrap';
+import { Link } from 'react-router-dom'
 
 //The goal of this nav is to be simple. It will have one link to the home page and then a dropdown for user/admin stuff (login, tickets, etc.)
 
@@ -21,8 +22,8 @@ const Navigation = () => {
             Menu
           </DropdownToggle>
           <DropdownMenu>
-            <DropdownItem>Login</DropdownItem>
-            <DropdownItem>Create Account</DropdownItem>
+              <DropdownItem tag={Link} to='./login'>Login</DropdownItem>
+              <DropdownItem tag={Link} to='./create_account'>Create Account</DropdownItem>
           </DropdownMenu>
         </Dropdown>
         <h2 className='logo'>DevDesk Queue</h2>
