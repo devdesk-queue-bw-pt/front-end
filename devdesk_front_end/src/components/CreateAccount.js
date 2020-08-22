@@ -11,7 +11,7 @@ const schema = yup.object().shape({
 
 })
 
-const Login = () => {
+const CreateAccount = () => {
 
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema)
@@ -53,7 +53,7 @@ const Login = () => {
 
 
       {/*Auth Level*/}
-      <label htmlFor='authLevel'>Login As:</label>
+      <label htmlFor='authLevel'>Create Account For:</label>
       <select id='authLevel' name='authLevel' data-cy='authLevel' ref={register({})}>
         <option>Student</option>
         <option>Administrator</option>
@@ -68,4 +68,4 @@ const Login = () => {
 }
 
 
-export default Login
+export default CreateAccount
