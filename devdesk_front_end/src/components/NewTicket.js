@@ -55,7 +55,7 @@ const NewTicket = () => {
       {/*TRIED*/}
       <label htmlFor='tried'></label>
       <textarea
-        placeholder='Tried'
+        placeholder="I've tried..."
         id='tried'
         name='tried'
         data-cy='tried'
