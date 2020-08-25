@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { Nav, NavItem, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, NavLink } from 'reactstrap';
+import { Link } from 'react-router-dom'
 
-
+//The goal of this nav is to be simple. It will have one link to the home page and then a dropdown for user/admin stuff (login, tickets, etc.)
 
 const Navigation = () => {
 
@@ -14,30 +15,22 @@ const Navigation = () => {
     <div>
       <Nav tabs>
         <NavItem>
-          <NavLink href="#" active>Link</NavLink>
+          <NavLink href="#" active>Home</NavLink>
         </NavItem>
         <Dropdown nav isOpen={dropdownOpen} toggle={toggle}>
           <DropdownToggle nav caret>
-            Dropdown
+            Menu
           </DropdownToggle>
           <DropdownMenu>
-            <DropdownItem header>Header</DropdownItem>
-            <DropdownItem disabled>Action</DropdownItem>
-            <DropdownItem>Another Action</DropdownItem>
-            <DropdownItem divider />
-            <DropdownItem>Another Action</DropdownItem>
+              <DropdownItem tag={Link} to='./login'>Login</DropdownItem>
+              <DropdownItem tag={Link} to='./create_account'>Create Account</DropdownItem>
+              <DropdownItem tag={Link} to='./new_ticket'>Create New Ticket</DropdownItem>
+
           </DropdownMenu>
         </Dropdown>
-        <NavItem>
-          <NavLink href="#">Link</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="#">Another Link</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink disabled href="#">Disabled Link</NavLink>
-        </NavItem>
+        <h2 className='logo'>DevDesk Queue</h2>
       </Nav>
+    
     </div>
 
   )
