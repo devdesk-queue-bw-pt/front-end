@@ -9,7 +9,7 @@ import thunk from "redux-thunk";
 
 import { ticketReducer } from './reducers/ticketReducer';
 
-const store = createStore(reducer, applyMiddleware(thunk));
+const store = createStore(ticketReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
     <Provider store={store}>

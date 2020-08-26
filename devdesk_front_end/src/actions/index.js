@@ -100,6 +100,6 @@ export const updateTicketData = editTicket => dispatch => {
             dispatch({type: UPDATE_TICKET_DATA_SUCCESS, payload: res.data })
         })
         .catch(err => {
-            ({type: UPDATE_TICKET_DATA_FAILURE, payload: err.response })
+            dispatch({type: UPDATE_TICKET_DATA_FAILURE, payload: err.response })
         })
 }
