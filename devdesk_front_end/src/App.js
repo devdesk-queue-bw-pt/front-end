@@ -7,6 +7,7 @@ import Navigation from './components/Navigation'
 import Login from './components/Login'
 import CreateAccount from './components/CreateAccount';
 import NewTicket from './components/NewTicket';
+import TicketList from './components/TicketList'
 
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
         <Route path='/login' component={Login} />
         <Route path='/create_account' component={CreateAccount} />
         <Route path='/new_ticket' component={NewTicket} />
-
+        <Route path='/view_tickets' component= {TicketList} />
       </Switch>
     </div>
   );

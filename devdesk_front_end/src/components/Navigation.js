@@ -25,7 +25,7 @@ const Navigation = () => {
               <DropdownItem tag={Link} to='./login'>Login</DropdownItem>
               <DropdownItem tag={Link} to='./create_account'>Create Account</DropdownItem>
               <DropdownItem tag={Link} to='./new_ticket'>Create New Ticket</DropdownItem>
-
+              <DropdownItem tag={Link} to='./view_tickets'>View Open Tickets</DropdownItem>
           </DropdownMenu>
         </Dropdown>
         <h2 className='logo'>DevDesk Queue</h2>
