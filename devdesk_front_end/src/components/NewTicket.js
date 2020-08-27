@@ -69,12 +69,13 @@ const NewTicket = () => {
       <label htmlFor='category'>Category:</label>
       <select id='category' name='category' data-cy='category' ref={register({})}>
         <option>--Select a Category--</option>
-        <option>Category 1</option>
-        <option>Category 2</option>
-        <option>Category 3</option>
-        <option>Category 4</option>
-        <option>Category 5</option>
-        <option>Category 6</option>
+        <option>HTML</option>
+        <option>CSS</option>
+        <option>Less / Sass</option>
+        <option>Javascript</option>
+        <option>React</option>
+        <option>IDE Issues</option>
+        <option>Other</option>
       </select> 
 
 
