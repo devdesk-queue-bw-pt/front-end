@@ -8,6 +8,7 @@ import Login from './components/Login'
 import CreateAccount from './components/CreateAccount';
 import NewTicket from './components/NewTicket';
 import TicketList from './components/TicketList'
+import PrivateRoute from "./components/PrivateRoutes";
 
 
 function App() {
@@ -18,8 +19,8 @@ function App() {
         <Route exact path='/' /> {/*Placeholder for Janna's work */}
         <Route path='/login' component={Login} />
         <Route path='/create_account' component={CreateAccount} />
-        <Route path='/new_ticket' component={NewTicket} />
-        <Route path='/view_tickets' component= {TicketList} />
+        <PrivateRoute path='/new_ticket' component={NewTicket} />
+        <PrivateRoute path='/view_tickets' component= {TicketList} />
       </Switch>
     </div>
   );
