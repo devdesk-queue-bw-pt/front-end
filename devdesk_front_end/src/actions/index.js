@@ -104,9 +104,9 @@ export const updateTicketData = editTicket => dispatch => {
         })
 }
 
-export const postNewUser = newUser => {
-    dispatch({type: POST_REGISTRATION})
-    axios
-        .get("", newUser)
-        .then()
-}
+// export const postNewUser = newUser => {
+//     dispatch({type: POST_REGISTRATION})
+//     axios
+//         .get("", newUser)
+//         .then()
+// }
