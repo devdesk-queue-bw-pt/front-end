@@ -12,10 +12,10 @@ const TicketList = () => {
   const getTickets = () => {
 
     axios
-      .get('https://devdesklambda.herokuapp.com/')
+      .get('https://devdesklambda.herokuapp.com/api/tickets')
       .then(response => {
         setTickets(response.data)
-        console.log('RESPONSE: ', response)
+        console.log('BACKEND RESPONSE: ', response)
       })
       .catch(error => {
         console.log('ERROR: ', error)
@@ -23,33 +23,42 @@ const TicketList = () => {
 
   }
 
-  useEffect(getTickets, [tickets])
+  useEffect(getTickets, [])
 
   return(
 
     
     <Table>
-      <div>
-        <h1>hu</h1>
-      </div>
     <thead>
       <tr>
+        <th>Ticket ID</th>
         <th>Category</th>
         <th>Title</th>
         <th>Description</th>
-        <th>Troubleshooting</th>
+        <th>Steps Taken</th>
+        <th>Creator</th>
+        <th>Status</th>
       </tr>
     </thead>
     <tbody>
       {tickets.map(ticket => {
 
         return(
-        <tr>
-          <th scope="row">{ticket.category}</th>
-          <td>{ticket.title}</td>
-          <td>{ticket.description}</td>
-          <td>{ticket.tried}</td>
-        </tr>)
+
+        <div>
+          <tr>
+            <th scope="row">{ticket.id}</th>
+            <td>{ticket.category}</td>
+            <td>{ticket.title}</td>
+            <td>{ticket.description}</td>
+            <td>{ticket.steps_taken}</td>
+            <td>{ticket.creator_id}</td>
+            <td>{ticket.status}</td>
+          </tr>
+          <button>Edit</button>
+        </div>
+        
+        )
 
       })}
     </tbody>

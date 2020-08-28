@@ -1,27 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers';
 import * as yup from 'yup'
+import axios from 'axios';
 
 const schema = yup.object().shape({
 
   title: yup.string().required('Please enter a title'),
   description: yup.string().required('Please enter a description'),
   tried: yup.string().required('Please enter what you have tried yourself'),
-  category: yup.string().oneOf(['category 1', 'category 2', 'category 3', 'category 4', 'category 5', 'category 6'])
+  category: yup.string().oneOf(['HTML', 'CSS', 'Less / Sass', 'Javascript', 'React', 'IDE Issues', 'Other']).required('Please Select a Category')
 
 })
 
 const NewTicket = () => {
 
+  const[formState, setFormState] = useState({
+    title: '',
+    description: '',
+    tried: '',
+    category: ''
+  })
+
+
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema)
   })
 
-  const onSubmit = data => console.log(data)
+  const onSubmit = data => {
+    axios
+      .post('https://devdesklambda.herokuapp.com/api/tickets/submit')
+      .then(data => {
+        console.log(data)
+      })
+      .catch(error => console.log('SUBMIT ERROR: ', error))
+  }
 
-
-  
 
   return (
 
