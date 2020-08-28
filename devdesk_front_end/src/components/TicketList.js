@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Table } from 'reactstrap';
 import axios from 'axios'
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 
 
@@ -11,8 +12,8 @@ const TicketList = () => {
 
   const getTickets = () => {
 
-    axios
-      .get('https://devdesklambda.herokuapp.com/api/tickets')
+    axiosWithAuth()
+      .get('/tickets')
       .then(response => {
         setTickets(response.data)
         console.log('BACKEND RESPONSE: ', response)
