@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
+import { Table } from 'reactstrap';
 import axios from 'axios'
-import Ticket from './Ticket';
+
 
 
 
@@ -11,7 +12,7 @@ const TicketList = () => {
   const getTickets = () => {
 
     axios
-      .get('')
+      .get('https://devdesklambda.herokuapp.com/')
       .then(response => {
         setTickets(response.data)
         console.log('RESPONSE: ', response)
@@ -22,17 +23,37 @@ const TicketList = () => {
 
   }
 
-  useEffect(getTickets, [])
+  useEffect(getTickets, [tickets])
 
   return(
 
-    <div>
+    
+    <Table>
+      <div>
+        <h1>hu</h1>
+      </div>
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Troubleshooting</th>
+      </tr>
+    </thead>
+    <tbody>
       {tickets.map(ticket => {
+
         return(
-          <Ticket ticket={ticket} key={ticket.id} />
-        )
+        <tr>
+          <th scope="row">{ticket.category}</th>
+          <td>{ticket.title}</td>
+          <td>{ticket.description}</td>
+          <td>{ticket.tried}</td>
+        </tr>)
+
       })}
-    </div>
+    </tbody>
+  </Table>
 
   )
 
