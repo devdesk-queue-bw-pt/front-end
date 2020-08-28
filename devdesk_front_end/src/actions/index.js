@@ -103,3 +103,10 @@ export const updateTicketData = editTicket => dispatch => {
             dispatch({type: UPDATE_TICKET_DATA_FAILURE, payload: err.response })
         })
 }
+
+// export const postNewUser = newUser => {
+//     dispatch({type: POST_REGISTRATION})
+//     axios
+//         .get("", newUser)
+//         .then()
+// }

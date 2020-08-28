@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers';
 import * as yup from 'yup'
+import axiosWithAuth from "../utils/axiosWithAuth";
 
 const schema = yup.object().shape({
 
@@ -13,11 +15,32 @@ const schema = yup.object().shape({
 
 const Login = () => {
 
+    const [ loginData, setLoginData ] = useState(
+        {
+            username: "",
+            password: "",
+            authLevel: ""
+        }
+    )
+
+
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema)
   })
 
-  const onSubmit = data => console.log(data)
+  const onSubmit = loginData => {
+        axiosWithAuth()
+            .post("/auth/login", loginData)
+            .then(res => {
+                console.log('MJM: Login.js: Response from Login', res)
+                localStorage.setItem("token", res.data.token)
+                return <Redirect to='/view_tickets' />
+
+            })
+            .catch(err =>
+                console.error("mjm: Login.js: login: err.message: ", err.message)
+            );
+  }
 
 
   
