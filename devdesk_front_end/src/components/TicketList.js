@@ -6,8 +6,7 @@ import { Link } from 'react-router-dom'
 import { Button } from 'reactstrap'
 
 
-
-const TicketList = () => {
+const TicketList = (props) => {
 
   const [tickets, setTickets] = useState([])
 
@@ -77,5 +76,14 @@ const TicketList = () => {
 
 }
 
+const mapStateToProps = (state) => {
+  return{
+    tickets: state.tickets
+  }
+}
 
-export default TicketList
+
+export default connect(
+  mapStateToProps,
+    {getAllTickets}
+) (TicketList)
