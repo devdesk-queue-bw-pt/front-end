@@ -9,21 +9,8 @@ const TicketList = (props) => {
 
   const [tickets, setTickets] = useState([])
 
-  const getTickets = () => {
-
-    axios
-      .get('')
-      .then(response => {
-        setTickets(response.data)
-        console.log('RESPONSE: ', response)
-      })
-      .catch(error => {
-        console.log('ERROR: ', error)
-      })
-
-  }
-
   useEffect(() => { props.getAllTickets()}, [])
+
   return(
 
     <div>

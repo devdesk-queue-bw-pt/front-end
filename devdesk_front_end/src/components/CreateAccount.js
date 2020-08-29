@@ -6,6 +6,7 @@ import * as yup from 'yup'
 
 //Actions
 import {POST_REGISTRATION, POST_REGISTRATION_FAILURE, POST_REGISTRATION_SUCCESS, postNewUser} from '../actions/index'
+import axios from "axios";
 
 const schema = yup.object().shape({
 
@@ -13,7 +14,6 @@ const schema = yup.object().shape({
   password: yup.string().required('Please enter a valid password'),
     first_name: yup.string().required('Please enter your first name'),
     last_name: yup.string().required('Please enter your last name'),
-  authLevel: yup.string().oneOf(['Student', 'Administrator'])
 
 })
 
@@ -24,7 +24,16 @@ const CreateAccount = (props) => {
   })
 
   const onSubmit = newUser => {
-    props.postNewUser(newUser)
+      axios
+          .post("https://devdesklambda.herokuapp.com/api/auth/register", newUser)
+          .then(res => {
+              console.log("MJM : Create Ticket : Successful", res)
+              // dispatch({type: POST_REGISTRATION_SUCCESS, payload: res.data })
+          })
+          .catch(err => {
+              console.log("MJM : Create Ticket : Err", err.response)
+              //dispatch({type: POST_REGISTRATION_FAILURE, payload: err.response })
+          })
   }
 
 
@@ -83,10 +92,10 @@ const CreateAccount = (props) => {
 
 
       {/*Auth Level*/}
-      <label htmlFor='authLevel'>Create Account For:</label>
-      <select id='authLevel' name='authLevel' data-cy='authLevel' ref={register({})}>
-        <option>Student</option>
-        <option>Administrator</option>
+      <label htmlFor='role'>Create Account For:</label>
+      <select id='role' name='role' data-cy='role' ref={register({})}>
+        <option>1</option>
+        <option>2</option>
       </select> 
 
 
