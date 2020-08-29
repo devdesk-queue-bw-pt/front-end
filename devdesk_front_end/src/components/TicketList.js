@@ -1,28 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Ticket from './Ticket';
+import { getAllTickets } from "../actions";
+import {connect} from "react-redux";
 
 
-
-const TicketList = () => {
+const TicketList = (props) => {
 
   const [tickets, setTickets] = useState([])
 
-  const getTickets = () => {
-
-    axios
-      .get('')
-      .then(response => {
-        setTickets(response.data)
-        console.log('RESPONSE: ', response)
-      })
-      .catch(error => {
-        console.log('ERROR: ', error)
-      })
-
-  }
-
-  useEffect(getTickets, [])
+  useEffect(() => { props.getAllTickets()}, [])
 
   return(
 
@@ -39,5 +26,14 @@ const TicketList = () => {
 
 }
 
+const mapStateToProps = (state) => {
+  return{
+    tickets: state.tickets
+  }
+}
 
-export default TicketList
+
+export default connect(
+  mapStateToProps,
+    {getAllTickets}
+) (TicketList)
