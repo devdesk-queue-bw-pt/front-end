@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Ticket from './Ticket';
+import { getAllTickets } from "../actions";
+import {connect} from "react-redux";
 
 
-
-const TicketList = () => {
+const TicketList = (props) => {
 
   const [tickets, setTickets] = useState([])
 
@@ -22,8 +23,7 @@ const TicketList = () => {
 
   }
 
-  useEffect(getTickets, [])
-
+  useEffect(() => { props.getAllTickets()}, [])
   return(
 
     <div>
@@ -39,5 +39,14 @@ const TicketList = () => {
 
 }
 
+const mapStateToProps = (state) => {
+  return{
+    tickets: state.tickets
+  }
+}
 
-export default TicketList
+
+export default connect(
+  mapStateToProps,
+    {getAllTickets}
+) (TicketList)
