@@ -4,6 +4,8 @@ import axiosWithAuth from '../utils/axiosWithAuth';
 import NewComments from './NewComments'
 import { Link } from 'react-router-dom'
 import { Button } from 'reactstrap'
+import {connect} from "react-redux";
+import {getAllTickets} from "../actions";
 
 
 const TicketList = (props) => {
