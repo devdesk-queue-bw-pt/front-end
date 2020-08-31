@@ -41,9 +41,11 @@ export const getAllTickets = () => dispatch => {
         .get("/tickets")
             .then(res => {
                 dispatch({type: FETCH_ALL_TICKETS_SUCCESS, payload: res.data})
+                console.log(res, "MJM: Index.js: Get Data")
             })
             .catch(err => {
                 dispatch({ type: FETCH_ALL_TICKETS_FAILURE, payload: err.response })
+                console.log(err.response, "MJM: Index.js: Err")
             })
 }
 
@@ -73,7 +75,7 @@ export const getAllUnresolvedTickets = () => dispatch => {
 export const postNewTicket = newTicket => dispatch => {
     dispatch({type: POST_NEW_TICKET})
     axiosWithAuth()
-        .post("/tickets", newTicket)
+        .post("/tickets/submit", newTicket)
         .then(res => {
             dispatch({ type: POST_NEW_TICKET_SUCCESS, payload: res.data })
         })
@@ -101,5 +103,17 @@ export const updateTicketData = editTicket => dispatch => {
         })
         .catch(err => {
             dispatch({type: UPDATE_TICKET_DATA_FAILURE, payload: err.response })
+        })
+}
+
+export const postNewUser = newUser => {
+    //dispatch({type: POST_REGISTRATION})
+    axios
+        .post("/auth/register", newUser)
+        .then(res => {
+           // dispatch({type: POST_REGISTRATION_SUCCESS, payload: res.data })
+        })
+        .catch(err => {
+            //dispatch({type: POST_REGISTRATION_FAILURE, payload: err.response })
         })
 }

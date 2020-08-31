@@ -1,27 +1,61 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers';
 import * as yup from 'yup'
+import axios from 'axios';
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 const schema = yup.object().shape({
 
   title: yup.string().required('Please enter a title'),
   description: yup.string().required('Please enter a description'),
-  tried: yup.string().required('Please enter what you have tried yourself'),
-  category: yup.string().oneOf(['category 1', 'category 2', 'category 3', 'category 4', 'category 5', 'category 6'])
-
+  steps_taken: yup.string().required('Please enter steps you have taken to resolve the issue yourself'),
+  category: yup.string().oneOf(['HTML', 'CSS', 'Less / Sass', 'Javascript', 'React', 'IDE Issues', 'Other']).required('Please Select a Category'),
+  status: yup.string(),
+  creator_id: yup.number()
 })
 
 const NewTicket = () => {
+
+  const[formState, setFormState] = useState({
+    title: '',
+    description: '',
+    steps_taken: '',
+    category: '',
+    status: 'Open',
+    creator_id: 1
+  })
+
+  console.log(formState)
+
 
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema)
   })
 
-  const onSubmit = data => console.log(data)
+  console.log(errors)
 
+  const onSubmit = ticketData => {
 
-  
+    const newTicket = {...formState, ...ticketData}
+    
+
+    axiosWithAuth()
+      .post('/tickets/submit', newTicket)
+      .then(data => {
+        console.log(newTicket)
+        setFormState({
+          title: '',
+          description: '',
+          steps_taken: '',
+          category: '',
+          status: 'Open',
+          creator_id: 1
+        })
+      })
+      .catch(error => console.log('SUBMIT ERROR: ', error.response))
+  }
+
 
   return (
 
@@ -52,17 +86,17 @@ const NewTicket = () => {
       />
       {<p>{errors.description?.message}</p>}
 
-      {/*TRIED*/}
-      <label htmlFor='tried'></label>
+      {/*steps_taken*/}
+      <label htmlFor='steps_taken'></label>
       <textarea
         placeholder="I've tried..."
-        id='tried'
-        name='tried'
-        data-cy='tried'
+        id='steps_taken'
+        name='steps_taken'
+        data-cy='steps_taken'
         type='text'
         ref={register({ required: true})}
       />
-      {<p>{errors.tried?.message}</p>}
+      {<p>{errors.steps_taken?.message}</p>}
 
 
       {/*CATEGORY*/}
